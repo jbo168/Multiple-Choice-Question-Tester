@@ -74,6 +74,12 @@ public class MCQ
 
 	}
 
+	/* 
+		John Long - 12132306
+		This method dynamically gets the topic selection from the user 
+		and returns this as a String
+	*/
+
 	public static String getTopicOption()
 	{
 		String topicOptionNums = "";
@@ -110,8 +116,33 @@ public class MCQ
     	return selection;
 	}
 
+	/*
+		John Long - 12132306
+		This method runs the quiz for the user
+	*/
 	public static void quizImplementation()
 	{
-		selection = getTopicOption();
+		int selection = Integer.parseInt(getTopicOption());
+		String fileElements[];
+		String qOptions = "";
+		String question = "";
+		String topicHeader = "";
+
+		
+		for(int i=0; i<questions.get(0).size(); i++)
+		{		
+			if(Integer.parseInt(questions.get(i).get(0)) == selection)
+			{
+				topicHeader += topics.get(1).get(selection);
+				qOptions += questions.get(2).get(i) + "\n";
+				qOptions += "Enter the number of the chosen answer.\n";
+				qOptions += "1. " + questions.get(3).get(i) + "\n";
+				qOptions += "2. " + questions.get(4).get(i) + "\n";
+				qOptions += "3. " + questions.get(5).get(i) + "\n";
+				qOptions += "4. " + questions.get(6).get(i) + "\n";
+
+				question = JOptionPane.showInputDialog(null,qOptions,topicHeader);
+       		}
+       	}
 	}
 }
